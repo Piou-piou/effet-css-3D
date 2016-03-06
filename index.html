@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html id="htmlTop">
+	<head>
+		<title>Varaiteur css</title>
+		<meta charset="utf-8">
+		<link type="text/css" rel="stylesheet" href="css/style.css">
+		<script src="js/jquery1.9.1.js"></script>
+		<script src="js/jquery-ui1.10.js"></script>
+		<link rel="stylesheet" href="js/styles/far.css">
+		<script src="js/highlight.pack.js"></script>
+		<script type='text/javascript' src='js/knockout-2.2.1.js'></script>
+		<script src="js/variateur.js"></script>
+		<style id="dynamique" data-bind="text: animText"></style>
+	</head>
+	<body>
+		<div class="inner">
+			<button id="jouer">Jouer l'animation</button>
+			<button data-bind="click: addCuePoint">Ajouter un point clé</button>
+			<h2>Timeline</h2>
+			<ul data-bind="foreach: {data: items, afterRender: afterRender}" class="timeline">
+				<li class="drag" data-bind="style: { left: time()+'%'}"><a href="#" data-bind="click: $root.selected"><span data-bind="text: time">000</span></a></li>
+			</ul>
+			<div class="colonne">
+				<div class="modif">
+					<div data-bind="with: selected">
+						<div data-bind="with: cssProp" class="proprietes">
+							<p>changer la couleur du texte </p>
+							<input id="couleur" data-bind="value: couleur, valueUpdate: 'afterkeydown'" />
+							
+							<p>changer la couleur du fond :</p>
+							<input id="couleur_fond" data-bind="value: couleur_fond, valueUpdate: 'afterkeydown'"/>
+							
+							<p>changer le scale en X :</p>
+							<input id="scaleX" data-bind="value: scaleX, valueUpdate: 'afterkeydown'"/>
+							<input type="range" min="0" max="5" step="0.1"  id="scaleX" data-bind="value: scaleX"/>
+							
+							<p>changer la rotation en X :</p>
+							<input id="rotateX" data-bind="value: rotateX"/>
+							<input type="range" min="-360" max="360" step="0"  id="rotateX" data-bind="value: rotateX"/>
+							
+							<p>changer la rotation en Y :</p>
+							<input id="rotateY" data-bind="value: rotateY"/>
+							<input type="range" min="-360" max="360" step="0" id="rotateY" data-bind="value: rotateY"/>
+							
+							<p>changer la translation en X :</p>
+							<input id="translateX" data-bind="value: translateX"/>
+							<input type="range" min="-500" max="500" step="0"  id="translateX" data-bind="value: translateX"/>
+							
+							<p>changer la translation en Y :</p>
+							<input id="translateY" data-bind="value: translateY"/>
+							<input type="range" min="-360" max="360" step="0" id="translateY" data-bind="value: translateY"/>
+							
+							<p>changer le skew en X :</p>
+							<input id="skewX" data-bind="value: skewX"/>
+							<input type="range" min="-360" max="360" step="0"  id="skewX" data-bind="value: skewX"/>
+							
+							<p>changer le skew en Y :</p>
+							<input id="skewY" data-bind="value: skewY"/>
+							<input type="range" min="-360" max="360" step="0"  id="skewY" data-bind="value: skewY"/>
+							
+							<h2>Transformations 3D</h2>
+							
+							<p>changer la rotation en Z :</p>
+							<input id="rotateZ" data-bind="value: rotateZ"/>
+							<input type="range" min="-360" max="360" step="0"  id="rotateX" data-bind="value: rotateZ"/>
+							
+							<p>changer la translation en Z :</p>
+							<input id="translateZ" data-bind="value: translateZ"/>
+							<input type="range" min="-500" max="500" step="0"  id="translateZ" data-bind="value: translateZ"/>
+							
+							<p>changer la perspective :</p>
+							<input id="perspectiveZ" data-bind="value: perspectiveZ"/>
+							<input type="range" min="-500" max="500" step="0"  id="perspectiveZ" data-bind="value: perspectiveZ"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			<div class="colonne">
+				<div data-bind="with: selected">
+				<div class="content-effet">
+					<div class="effet" data-bind="attr: { style: cssText() }">
+						test
+					</div>
+				</div>
+				</div>
+			</div>
+			<!--Div qui affiche les propriétés css-->
+				
+			
+			<h2>animation :</h2>
+			<!-- la suite serait mieux avec un template (jquery ou underscore)-->
+			<pre><code>
+@-webkit-keyframes laAnim {
+  <!-- ko foreach: items -->
+	  <!-- ko text: time --><!-- /ko -->% {
+	  <!-- ko text: cssText--><!-- /ko -->
+	  }
+  <!-- /ko -->
+}
+			</code></pre>
+		</div>
+	</body>
+</html>
